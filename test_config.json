@@ -1,0 +1,14 @@
+{
+    "secrets": {
+        "access_key": "apfvnjevfrrev"
+    ,   "refresh_key": "wkdfntbviusnin"
+    }
+,   "http": {
+        "port": ":8080"
+	,	"read_timeout": "10s"
+    ,   "write_timeout": "10s"
+    }
+,	"db": {
+		"connect": "postgres://test_auth_user:test_auth_password@localhost:5432/test_auth_db"
+    }
+}
