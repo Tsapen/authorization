@@ -57,6 +57,8 @@ func run(c *config) {
 		log.Fatalf("can't prepare db: %s", err)
 	}
 
+	go db.RunExpiredTokensCleaning()
+
 	var cHTTP = authhttp.Config{
 		Port:         c.HTTP.Port,
 		ReadTimeout:  c.HTTP.ReadTimeout,

@@ -35,7 +35,7 @@ func CreateDBConnection(c *Config) (*DB, error) {
 
 // RunExpiredTokensCleaning starts removing expired tokens from db.
 func (db *DB) RunExpiredTokensCleaning() {
-	var query = `DELETE FROM tokens WHERE expired_at < localtimestamp();`
+	var query = `DELETE FROM auth WHERE expires_at < localtimestamp;`
 
 	for {
 		time.Sleep(1 * time.Minute)

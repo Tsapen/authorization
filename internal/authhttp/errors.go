@@ -1,6 +1,7 @@
 package authhttp
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 	"net/url"
@@ -18,7 +19,11 @@ func logError(url *url.URL, method, message string, err error) {
 }
 
 func errStatus(err error) int {
-	if _, ok := err.(auth.BadParametersError); ok {
+	switch err.(type) {
+	case *json.SyntaxError:
+		return http.StatusBadRequest
+	case auth.BadParametersError,
+		*json.UnmarshalTypeError:
 		return http.StatusUnprocessableEntity
 	}
 
